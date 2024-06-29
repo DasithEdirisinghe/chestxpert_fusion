@@ -21,7 +21,7 @@ class CrossAttentionFusionEncoder(nn.Module):
 
         # Linear layers to project CNN and CLIP features to a common dimension
         self.cnn_proj = nn.Linear(2048, embed_dim)  # Assuming ResNet-50 output is 2048
-        self.clip_proj = nn.Linear(512, embed_dim)   # Assuming CLIP's output is 768
+        self.clip_proj = nn.Linear(512, embed_dim)   # Assuming CLIP's output is 512
 
         # Cross-attention mechanism
         self.cross_attention = nn.MultiheadAttention(embed_dim=embed_dim, num_heads=8)
@@ -40,7 +40,7 @@ class CrossAttentionFusionEncoder(nn.Module):
         clip_image_features = self.clip_model.get_image_features(clip_images)
         clip_image_features = self.clip_proj(clip_image_features)
 
-       # Reshape for cross-attention (seq_len, batch_size, embed_dim)
+       # Reshape for cross-attention (batch_size, seq_len, embed_dim)
         cnn_features = cnn_features.unsqueeze(1)   # (batch_size, 1, embed_dim)
         clip_image_features = clip_image_features.unsqueeze(1)   # (batch_size, 1, embed_dim)
         # Apply cross-attention
