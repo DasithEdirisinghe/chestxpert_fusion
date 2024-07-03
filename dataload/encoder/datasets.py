@@ -68,7 +68,7 @@ class ImageCaptionDataset(Dataset):
     def augment_image(self, image):
         # Define the augmentation transform
         augmentation_transform = transforms.Compose([
-            transforms.ColorJitter(brightness=0.125, saturation=0.5),
+            transforms.ColorJitter(brightness=0.125, saturation=0.5, contrast=0.5),
             transforms.RandomHorizontalFlip()
         ])
         # Apply the augmentation

@@ -7,7 +7,7 @@ import pandas as pd
 import torch
 import numpy as np
 
-from dataload.datasets import ImageCaptionDataset
+from dataload.encoder.datasets import ImageCaptionDataset
 
 def create_data_loaders(csv_file, tokenizer, batch_size, valid_size=0.2, shuffle=True, random_seed=42):
     # Read the CSV file
