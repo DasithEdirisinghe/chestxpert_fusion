@@ -5,7 +5,7 @@ from tokenizers import ByteLevelBPETokenizer
 
 from model.loss import ContrastiveLoss
 from model.fused_encoder import CrossAttentionFusionEncoder
-from dataload.dataloader import create_data_loaders
+from dataload.encoder.dataloader import create_data_loaders
 
 # Fine-tuning loop
 def fine_tune_encoder(model, train_loader, valid_loader, criterion, optimizer, num_epochs, device, model_save_path):
@@ -70,12 +70,12 @@ if __name__ == "__main__":
 
     # Load the custom tokenizer
     tokenizer = ByteLevelBPETokenizer(
-        '/home/dasith/Documents/Personal/Academics/chestXtray/chestxpert_fusion/preprocess/mimic-vocab.json',
-        '/home/dasith/Documents/Personal/Academics/chestXtray/chestxpert_fusion/preprocess/mimic-merges.txt',
+        '/home/dasith/Documents/Personal/Academics/chestXpert/chestxpert_fusion/preprocess/mimic-vocab.json',
+        '/home/dasith/Documents/Personal/Academics/chestXpert/chestxpert_fusion/preprocess/mimic-merges.txt',
     )
 
     # Paths
-    csv_file = '/home/dasith/Documents/Personal/Academics/chestXtray/Datasets/indiana/cleaned_df.csv'
+    csv_file = '/home/dasith/Documents/Personal/Academics/chestXpert/Datasets/indiana/cleaned_df.csv'
 
     # Create data loaders
     train_loader, valid_loader = create_data_loaders(csv_file, tokenizer, batch_size=16)
@@ -92,7 +92,7 @@ if __name__ == "__main__":
     optimizer = torch.optim.Adam(fusion_model.parameters(), lr=5e-5, betas=(0.9, 0.98), eps=1e-6, weight_decay=0.2)
 
     # Define model save path
-    model_save_path = '/home/dasith/Documents/Personal/Academics/chestXtray/chestxpert_fusion/checkpoints/best_fusion_model_2.pth'
+    model_save_path = '/home/dasith/Documents/Personal/Academics/chestXpert/chestxpert_fusion/checkpoints/best_fusion_model_3.pth'
 
     # Fine-tune the encoder
     fine_tune_encoder(fusion_model, train_loader, valid_loader, contrastive_loss, optimizer, num_epochs=10, device=device, model_save_path=model_save_path)

@@ -28,11 +28,11 @@ def clean(selected_reports):
     data['findings']= data['findings'].apply(decontracted)
     data['findings']= data['findings'].apply(other_processing)
 
-    data.to_csv("/home/dasith/Documents/Personal/Academics/chestXtray/Datasets/indiana/cleaned_df.csv", index = False)
+    data.to_csv("/home/dasith/Documents/Personal/Academics/chestXpert/Datasets/indiana/cleaned_df.csv", index = False)
 
 if __name__=="__main__":
-    projection_path = "/home/dasith/Documents/Personal/Academics/chestXtray/Datasets/indiana/indiana_projections.csv"
-    reports_path = '/home/dasith/Documents/Personal/Academics/chestXtray/Datasets/indiana/indiana_reports.csv'
-    image_path = "/home/dasith/Documents/Personal/Academics/chestXtray/Datasets/indiana/images/images_normalized/"
+    projection_path = "/home/dasith/Documents/Personal/Academics/chestXpert/Datasets/indiana/indiana_projections.csv"
+    reports_path = '/home/dasith/Documents/Personal/Academics/chestXpert/Datasets/indiana/indiana_reports.csv'
+    image_path = "/home/dasith/Documents/Personal/Academics/chestXpert/Datasets/indiana/images/images_normalized/"
     reports = read(projection_path, reports_path, image_path)
     clean(reports)

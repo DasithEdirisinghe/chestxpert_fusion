@@ -1,7 +1,7 @@
 import pandas as pd
 from tokenizers import ByteLevelBPETokenizer
 
-REPORTS = '/home/dasith/Documents/Personal/Academics/chestXtray/Datasets/indiana/cleaned_df.csv'
+REPORTS = '/home/dasith/Documents/Personal/Academics/chestXpert/Datasets/indiana/cleaned_df.csv'
 
 reports = pd.read_csv(REPORTS)
 reports = list(reports['findings'].values)
